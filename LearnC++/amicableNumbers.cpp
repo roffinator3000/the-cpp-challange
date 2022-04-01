@@ -14,10 +14,10 @@ void amicableNumbers(int limit)
     
     for(int i = 1; i <= limit; ++i)
     {
-        int sodi = sumOfProperDivisors(i);
-        int soda = sumOfProperDivisors(sodi);
+        int sumOfDivI = sumOfProperDivisors(i);
+        int sumOfDivAmic = sumOfProperDivisors(sumOfDivI);
         
-        if((i == soda) && (i != sodi))
+        if((i == sumOfDivAmic) && (i != sumOfDivI))
         {
             int oldCount = (int)anlist.size();
             anlist.push_front(i);
@@ -30,8 +30,8 @@ void amicableNumbers(int limit)
             }
             else
             {
-                anlist.push_front(sodi);
-                cout << "The numbers " << i << " and " << sodi << " are a amicable pair.\n";
+                anlist.push_front(sumOfDivI);
+                cout << "The numbers " << i << " and " << sumOfDivI << " are a amicable pair.\n";
             }
         }
     }
