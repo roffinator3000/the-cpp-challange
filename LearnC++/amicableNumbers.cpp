@@ -33,7 +33,6 @@ void amicableNumbers(int limit)
                 anlist.push_front(sodi);
                 cout << "The numbers " << i << " and " << sodi << " are a amicable pair.\n";
             }
-            
         }
     }
     cout << flush;

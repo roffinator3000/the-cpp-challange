@@ -10,7 +10,6 @@
 void largestPrime(int limit)
 {
     auto primes = generatePrimes(limit);
-    
     cout << "The largest prime below the given limit is " << primes.back() << endl;
 }
 
@@ -21,7 +20,7 @@ vector<int> generatePrimes(int limit)
         cout << "There are no primes smaller than " << limit ;
         return vector<int>{};
     }
-        
+    
     vector<int> primes{2};
     
     for(int i = 3; i < limit; i += 2)
@@ -38,10 +37,8 @@ vector<int> generatePrimes(int limit)
     secondexit:
         ;
     }
-  
     return primes;
 }
-
 
 void sexyPrimes(int limit)
 {

@@ -9,7 +9,6 @@
 
 int greatestCommonDivisor(int first, int second)
 {
-
     for(int i = (first < second ? first : second); i >= 1; --i)
     {
         if(!(first % i) && !(second % i))

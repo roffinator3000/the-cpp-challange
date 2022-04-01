@@ -14,12 +14,12 @@ int sumOfProperDivisors(int number)
     for(int k = 1; k < number; ++k)
         if((number % k) == 0)
             sumOfDividers += k;
-        
+    
     return sumOfDividers;
 }
 
 void abundantNumbers(int limit)
-{    
+{
     for(int i = 1; i <= limit; ++i)
     {
         int sumOfDividers = sumOfProperDivisors(i);
@@ -31,5 +31,3 @@ void abundantNumbers(int limit)
     }
     cout << flush;
 }
-
-

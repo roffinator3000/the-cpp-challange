@@ -7,6 +7,7 @@
 
 #include "armstrongNumbers.hpp"
 #include <math.h>
+
 using namespace std;
 
 void armstrongNumbers()
@@ -30,7 +31,6 @@ void armstrongNumbers()
                 {
                     cout << "The number " << actualNumber << " is a armstrong number.\n";
                 }
-                
             }
         }
     }
