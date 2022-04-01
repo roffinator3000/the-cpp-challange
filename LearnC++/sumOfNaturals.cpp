@@ -14,8 +14,9 @@ void sumOfNaturals(int limit)
     
     for(int i = 0; i <= limit; i++)
         // Tests if the current value is divisible by 3 or 5
+//        if(0 == (i % 3) || 0 == (i % 5))
         if(!(i % 3) || !(i % 5))
             sum += i;
-    
-    cout << "The sum for the given limit is " << sum << endl;
+        
+        std::cout << "The sum for the given limit is " << sum << std::endl;
 }

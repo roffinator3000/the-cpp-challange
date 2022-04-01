@@ -13,11 +13,10 @@ int greatestCommonDivisor(int first, int second)
     {
         if(!(first % i) && !(second % i))
         {
-            cout << "The greatest common divisor is " << i << endl;
+            std::cout << "The greatest common divisor is " << i << std::endl;
             return i;
         }
     }
-    
-    cout << "There is no common divisor" << endl;
+    std::cout << "There is no common divisor" << std::endl;
     return 1;
 }

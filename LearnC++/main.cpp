@@ -17,7 +17,7 @@
 
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
+    using namespace std;
     cout << "Hello, World!" << endl;
     primeFactors(3*5*7*11*3);
     return 0;

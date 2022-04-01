@@ -10,8 +10,6 @@
 
 #include <iostream>
 
-using namespace std;
-
 int leastCommonMultiple(int first, int second);
 
 #endif /* leastCommonMultiple_hpp */

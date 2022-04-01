@@ -15,6 +15,6 @@ int leastCommonMultiple(int first, int second)
     
     int lcm = product / gcd;
     
-    cout << "The least common multiple is " << lcm << endl;
+    std::cout << "The least common multiple is " << lcm << std::endl;
     return lcm;
 }

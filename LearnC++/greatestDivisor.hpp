@@ -10,8 +10,6 @@
 
 #include <iostream>
 
-using namespace std;
-
 int greatestCommonDivisor(int first, int second);
 
 #endif /* greatestDivisor_hpp */

@@ -71,7 +71,7 @@ vector<int> primeFactors(int number)
     }
     std::cout << factorList.at(0);
     for(int i=1; i < factorList.size(); i++)
-        std::cout << " * " << factorList.at(i);
+        cout << " * " << factorList.at(i);
     cout << endl;
     
     return factorList;
