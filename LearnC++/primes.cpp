@@ -26,12 +26,8 @@ vector<int> generatePrimes(int limit)
     for(int i = 3; i < limit; i += 2)
     {
         for(auto k = primes.begin(); k != primes.end(); ++k)
-        {
             if(!(i % *k))
-            {
                 goto secondexit;
-            }
-        }
        
         primes.push_back(i);
     secondexit:
@@ -48,12 +44,8 @@ void sexyPrimes(int limit)
     for(auto l = primes.begin(); l != primes.end(); ++l)
     {
         for(auto j = l+1; j != primes.end(); ++j)
-        {
             if(6 == (*j-*l))
-            {
                 cout << "The primes " << *l << " and " << *j << " are a pair of sexy primes\n";
-            }
-        }
         cout << flush;
     }
 }
