@@ -16,11 +16,14 @@
 #include "armstrongNumbers.hpp"
 #include "romanNumerals.h"
 
-int main(int argc, const char * argv[]) {
+int main(int argc, const char * argv[])
+{
     using namespace std;
     cout << "Hello, World!" << endl;
     
-    numericToRoman(3994);
-    romanToNumeric("MMXCVII");
+    romanNumerals test = romanNumerals(88);
+    romanNumerals test2 = romanNumerals("MMXCVII");
+    test.numericToRoman(3994);
+    romanNumerals::romanToNumeric("MMXCVII");
     return 0;
 }

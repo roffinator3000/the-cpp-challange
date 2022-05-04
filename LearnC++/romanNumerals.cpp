@@ -5,7 +5,21 @@
 #include <iostream>
 #include "romanNumerals.h"
 
-std::string numericToRoman(int number, bool printIt)
+romanNumerals::romanNumerals()
+    : numericValue(0), romanValue("")
+    {}
+
+romanNumerals::romanNumerals(int number)
+    {
+        setNumericValue(number);
+    }
+
+romanNumerals::romanNumerals(std::string roman)
+    {
+        setRomanValue(roman);
+    }
+
+std::string romanNumerals::numericToRoman(int number, bool printIt)
 {
     // roman numerals do not embrace the concept of zero
     if (0 >= number)
@@ -90,7 +104,7 @@ std::string numericToRoman(int number, bool printIt)
     return newRoman;
 }
 
-int romanToNumeric(std::string roman, bool printIt)
+int romanNumerals::romanToNumeric(std::string roman, bool printIt)
 {
     if (roman.empty())
     {
@@ -255,3 +269,25 @@ int romanToNumeric(std::string roman, bool printIt)
         std::cout << number << "\n";
     return number;
 }
+
+void romanNumerals::setNumericValue( int number )
+    {
+        romanValue = numericToRoman(number, false);
+        numericValue = number;
+    }
+
+void romanNumerals::setRomanValue( const std::string &roman )
+    {
+        numericValue = romanToNumeric(roman, false);
+        romanValue = roman;
+    }
+
+int romanNumerals::getNumericValue() const
+    {
+        return numericValue;
+    }
+
+const std::string &romanNumerals::getRomanValue() const
+    {
+        return romanValue;
+    }
