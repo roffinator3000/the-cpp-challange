@@ -5,12 +5,13 @@
 #include <iostream>
 #include "romanNumerals.h"
 
-std::string numericToRoman(int number)
+std::string numericToRoman(int number, bool printIt)
 {
     // roman numerals do not embrace the concept of zero
     if (0 >= number)
     {
-        std::cout << "\n";
+        if (printIt)
+            std::cout << "\n";
         return "";
     }
     // I II III  V X L C D M
@@ -84,15 +85,17 @@ std::string numericToRoman(int number)
         }
     }
     
-    std::cout << newRoman << "\n";
+    if (printIt)
+        std::cout << newRoman << "\n";
     return newRoman;
 }
 
-int romanToNumeric(std::string roman)
+int romanToNumeric(std::string roman, bool printIt)
 {
     if (roman.empty())
     {
-        std::cout << "0";
+        if (printIt)
+            std::cout << "0";
         return 0;
     }
     
@@ -248,6 +251,7 @@ int romanToNumeric(std::string roman)
         }
     }
     
-    std::cout << number << "\n";
+    if (printIt)
+        std::cout << number << "\n";
     return number;
 }
