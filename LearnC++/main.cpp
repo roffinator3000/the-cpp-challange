@@ -14,23 +14,13 @@
 #include "sumOfNaturals.hpp"
 #include "amicableNumbers.hpp"
 #include "armstrongNumbers.hpp"
-
+#include "romanNumerals.h"
 
 int main(int argc, const char * argv[]) {
     using namespace std;
     cout << "Hello, World!" << endl;
-    primeFactors(3*5*7*11*3);
+    
+    numericToRoman(3994);
+    romanToNumeric("MMXCVII");
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
