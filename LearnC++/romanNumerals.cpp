@@ -3,7 +3,18 @@
 //
 
 #include <iostream>
+#include <vector>
 #include "romanNumerals.h"
+
+static const std::vector<std::pair<std::string, int>> basicMap =
+    {{"M", 1000}, {"CM", 900},
+     {"D", 500},  {"CD", 400},
+     {"C", 100},  {"XC", 90},
+     {"L", 50},   {"XL", 40},
+     {"X", 10},   {"IX", 9},
+     {"V", 5},    {"IV", 4},
+     {"I", 1} };
+// I II III  V X L C D M
 
 romanNumerals::romanNumerals()
     : numericValue(0), romanValue("")
@@ -20,89 +31,24 @@ romanNumerals::romanNumerals(std::string roman)
     }
 
 std::string romanNumerals::numericToRoman(int number, bool printIt)
-{
-    // roman numerals do not embrace the concept of zero
-    if (0 >= number)
     {
+        std::string newRoman = "";
+        // roman numerals do not embrace the concept of zero
+        if (0 <= number)
+        {
+            for (auto const & pair : basicMap)
+            {
+                while (pair.second <= number)
+                {
+                    newRoman += pair.first;
+                    number -= pair.second;
+                }
+            }
+        }
         if (printIt)
-            std::cout << "\n";
-        return "";
+            std::cout << newRoman << "\n";
+        return newRoman;
     }
-    // I II III  V X L C D M
-    std::string newRoman = "";
-    while (0 < number)
-    {
-        if (1000 <= number)
-        {
-            newRoman += "M";
-            number -= 1000;
-        }
-        else if (900 <= number)
-        {
-            newRoman += "CM";
-            number -= 900;
-        }
-        else if (500 <= number)
-        {
-            newRoman += "D";
-            number -= 500;
-        }
-        else if (400 <= number)
-        {
-            newRoman += "CD";
-            number -= 400;
-        }
-        else if (100 <= number)
-        {
-            newRoman += "C";
-            number -= 500;
-        }
-        else if (90 <= number)
-        {
-            newRoman += "XC";
-            number -= 90;
-        }
-        else if (50 <= number)
-        {
-            newRoman += "L";
-            number -= 50;
-        }
-        else if (40 <= number)
-        {
-            newRoman += "XL";
-            number -= 40;
-        }
-        else if (10 <= number)
-        {
-            newRoman += "X";
-            number -= 10;
-        }
-        else if (9 <= number)
-        {
-            newRoman += "IX";
-            number -= 9;
-        }
-        else if (5 <= number)
-        {
-            newRoman += "V";
-            number -= 5;
-        }
-        else if (4 <= number)
-        {
-            newRoman += "IV";
-            number -= 4;
-        }
-        else if (1 <= number)
-        {
-            newRoman += "I";
-            number -= 1;
-        }
-    }
-    
-    if (printIt)
-        std::cout << newRoman << "\n";
-    return newRoman;
-}
 
 int romanNumerals::romanToNumeric(std::string roman, bool printIt)
 {
