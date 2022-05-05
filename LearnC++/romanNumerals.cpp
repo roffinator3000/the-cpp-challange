@@ -15,6 +15,26 @@ static const std::vector<std::pair<std::string, int>> basicMap =
      {"V", 5},    {"IV", 4},
      {"I", 1} };
 // I II III  V X L C D M
+static const std::vector<std::pair<std::string, int>> extendedMap = {
+    {"M",   1000}, {"CM", 900},
+     {"CCM", 800},  {"LM", 950},
+     {"XXM", 980},  {"XM", 990},
+     {"IIM", 998},  {"IM", 999},
+    {"D",   500},  {"CD", 400},
+     {"CCD", 300},  {"LD", 450},
+     {"XXD", 480},  {"XD", 490},
+     {"IID", 498},  {"ID", 499},
+    {"C",   100},  {"XC", 90},
+     {"XXC", 80},
+     {"IIC", 98},   {"IC", 89},
+    {"L",   50},   {"XL", 40},
+     {"XXL", 30},
+     {"IIL", 48},   {"IL", 49},
+    {"X",   10},   {"IX", 9},
+     {"IIX", 8},
+    {"V",   5},    {"IV", 4},
+     {"IIV", 3},
+    {"I", 1} };
 
 romanNumerals::romanNumerals()
     : numericValue(0), romanValue("")
@@ -60,156 +80,24 @@ int romanNumerals::romanToNumeric(std::string roman, bool printIt)
     }
     
     int number = 0;
-    while (!roman.empty())
-    {
-        switch ( toupper(roman[0]) )
+        for (auto const & pair : extendedMap)
         {
-            case 'M':
-                number += 1000;
-                roman = roman.erase(0,1);
+            int len = int(pair.first.length());
+            
+            again:
+            if (roman.empty())
                 break;
-            case 'D':
-                number += 500;
-                roman = roman.erase(0,1);
-                break;
-            case 'C':
-                if (1 < roman.size())
-                    if ('M' == toupper(roman[1]))
-                    {
-                        number += 900;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                    else if ('D' == toupper(roman[1]))
-                    {
-                        number += 400;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                number += 100;
-                roman = roman.erase(0,1);
-                break;
-            case 'L':
-                if (1 < roman.size())
-                    if ('M' == toupper(roman[1]))
-                    {
-                        number += 950;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                    else if ('D' == toupper(roman[1]))
-                    {
-                        number += 450;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                number += 50;
-                roman = roman.erase(0,1);
-                break;
-            case 'X':
-                if (1 < roman.size())
-                    if ('M' == toupper(roman[1]))
-                    {
-                        number += 990;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                    else if ('D' == toupper(roman[1]))
-                    {
-                        number += 490;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                    else if ('C' == toupper(roman[1]))
-                    {
-                        number += 90;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                    else if ('L' == toupper(roman[1]))
-                    {
-                        number += 40;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                number += 10;
-                roman = roman.erase(0,1);
-                break;
-            case 'V':
-                if (1 < roman.size())
-                    if ('M' == toupper(roman[1]))
-                    {
-                        number += 995;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                    else if ('D' == toupper(roman[1]))
-                    {
-                        number += 495;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                    else if ('C' == toupper(roman[1]))
-                    {
-                        number += 95;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                    else if ('L' == toupper(roman[1]))
-                    {
-                        number += 45;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                number += 5;
-                roman = roman.erase(0,1);
-                break;
-            case 'I':
-                if (1 < roman.size())
-                    if ('M' == toupper(roman[1]))
-                    {
-                        number += 999;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                    else if ('D' == toupper(roman[1]))
-                    {
-                        number += 499;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                    else if ('C' == toupper(roman[1]))
-                    {
-                        number += 99;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                    else if ('L' == toupper(roman[1]))
-                    {
-                        number += 49;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                    else if ('X' == toupper(roman[1]))
-                    {
-                        number += 9;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                    else if ('V' == toupper(roman[1]))
-                    {
-                        number += 4;
-                        roman = roman.erase(0,2);
-                        break;
-                    }
-                number += 1;
-                roman = roman.erase(0,1);
-                break;
-            default:
-                roman = roman.erase(0,1);
-                break;
+            
+            for ( int i = 0; i < len; ++i )
+                if (pair.first[i] != toupper(roman[i]))
+                    goto next;
+            
+            number += pair.second;
+            roman = roman.erase(0,len);
+            goto again;
+            
+            next:;
         }
-    }
     
     if (printIt)
         std::cout << number << "\n";
