@@ -17,6 +17,8 @@ public:
     
     void setNumericValue( int numericValue );
     void setRomanValue( const std::string &romanValue );
+    void setValue( int numericValue );
+    void setValue( const std::string &romanValue );
     int getNumericValue() const;
     const std::string &getRomanValue() const;
 

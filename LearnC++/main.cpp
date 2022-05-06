@@ -24,9 +24,10 @@ int main(int argc, const char * argv[])
     romanNumerals test = romanNumerals(88);
     romanNumerals test2 = romanNumerals("MMXCVII");
     test.numericToRoman(3994);
+    test.numericToRoman(-3994);
     romanNumerals::romanToNumeric("MIMXXC");
-    string x = test.numericToRoman(test.romanToNumeric("MXXMIIC")-1);
-    romanNumerals::numericToRoman(romanNumerals::romanToNumeric(x)-5);
+    romanNumerals::romanToNumeric("M IM X XC");
+    romanNumerals::romanToNumeric("M IM  X   XC");
     
     return 0;
 }

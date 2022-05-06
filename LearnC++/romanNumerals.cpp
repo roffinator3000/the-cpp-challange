@@ -54,17 +54,18 @@ std::string romanNumerals::numericToRoman(int number, bool printIt)
     {
         std::string newRoman = "";
         // roman numerals do not embrace the concept of zero
-        if (0 <= number)
+        
+        if (0 > number)
+            number *= -1;
+        for (auto const & pair : basicMap)
         {
-            for (auto const & pair : basicMap)
+            while (pair.second <= number)
             {
-                while (pair.second <= number)
-                {
-                    newRoman += pair.first;
-                    number -= pair.second;
-                }
+                newRoman += pair.first;
+                number -= pair.second;
             }
         }
+        
         if (printIt)
             std::cout << newRoman << "\n";
         return newRoman;
@@ -80,23 +81,26 @@ int romanNumerals::romanToNumeric(std::string roman, bool printIt)
     }
     
     int number = 0;
+    
         for (auto const & pair : extendedMap)
         {
             int len = int(pair.first.length());
             
-            again:
-            if (roman.empty())
-                break;
-            
-            for ( int i = 0; i < len; ++i )
-                if (pair.first[i] != toupper(roman[i]))
-                    goto next;
-            
-            number += pair.second;
-            roman = roman.erase(0,len);
-            goto again;
-            
-            next:;
+            while (!roman.empty()) {
+                
+                for ( int i = 0; i < len; ++i )
+                {
+                    while (' ' == roman[i])
+                        roman = roman.erase(i,1);
+    
+                    if ( pair.first[i] != toupper(roman[i]))
+                        goto nextRomanNum;
+                }
+    
+                number += pair.second;
+                roman = roman.erase(0, len);
+            }
+            nextRomanNum:;
         }
     
     if (printIt)
@@ -106,15 +110,21 @@ int romanNumerals::romanToNumeric(std::string roman, bool printIt)
 
 void romanNumerals::setNumericValue( int number )
     {
+        if (0 > number)
+            number *= -1;
         romanValue = numericToRoman(number, false);
         numericValue = number;
     }
+void romanNumerals::setValue( int number )
+    { setNumericValue(number);}
 
 void romanNumerals::setRomanValue( const std::string &roman )
     {
         numericValue = romanToNumeric(roman, false);
-        romanValue = roman;
+        romanValue = numericToRoman(numericValue, false);
     }
+void romanNumerals::setValue( const std::string &roman )
+    { setRomanValue(roman);}
 
 int romanNumerals::getNumericValue() const
     {
