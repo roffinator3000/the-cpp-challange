@@ -50,6 +50,10 @@ romanNumerals::romanNumerals(std::string roman)
         setRomanValue(roman);
     }
 
+romanNumerals::romanNumerals(romanNumerals const &rNum)
+    : numericValue(rNum.numericValue), romanValue(rNum.romanValue)
+    {}
+
 std::string romanNumerals::numericToRoman(int number, bool printIt)
     {
         std::string newRoman = "";
@@ -134,4 +138,47 @@ int romanNumerals::getNumericValue() const
 const std::string &romanNumerals::getRomanValue() const
     {
         return romanValue;
+    }
+
+const romanNumerals romanNumerals::operator+=(const romanNumerals& numB)
+    {
+        setValue(numericValue + numB.numericValue);
+        return *this;
+    }
+const romanNumerals romanNumerals::operator+(const romanNumerals& numB)
+    {return romanNumerals(*this) += numB;}
+
+const romanNumerals romanNumerals::operator-=(const romanNumerals& numB)
+    {
+        setValue(numericValue - numB.numericValue);
+        return *this;
+    }
+const romanNumerals romanNumerals::operator-(const romanNumerals& numB)
+    {return romanNumerals(*this) -= numB;}
+    
+bool romanNumerals::operator==( const romanNumerals &numB ) const
+    {
+        return numericValue == numB.numericValue;
+    }
+
+bool romanNumerals::operator!=( const romanNumerals &numB ) const
+    {return !(numB == *this);}
+
+bool romanNumerals::operator<( const romanNumerals &numB ) const
+    {return numericValue < numB.numericValue;}
+
+bool romanNumerals::operator>( const romanNumerals &numB ) const
+    {return numB < *this;}
+
+bool romanNumerals::operator<=( const romanNumerals &numB ) const
+    {return !(numB < *this);}
+
+bool romanNumerals::operator>=( const romanNumerals &numB ) const
+    {return !(*this < numB);}
+
+std::ostream &operator<<( std::ostream &os, const romanNumerals &numerals )
+    {
+//        os << "romanValue: " << numerals.romanValue;
+        os << numerals.romanValue;
+        return os;
     }
