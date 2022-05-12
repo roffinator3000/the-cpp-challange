@@ -12,6 +12,8 @@ add_executable(the_cpp_challange
 		LearnC++/amicableNumbers.hpp
 		LearnC++/armstrongNumbers.cpp
 		LearnC++/armstrongNumbers.hpp
+		LearnC++/collatzSequence.cpp
+		LearnC++/collatzSequence.h
 		LearnC++/greatestDivisor.cpp
 		LearnC++/greatestDivisor.hpp
 		LearnC++/leastCommonMultiple.cpp

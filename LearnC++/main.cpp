@@ -15,42 +15,30 @@
 #include "amicableNumbers.hpp"
 #include "armstrongNumbers.hpp"
 #include "romanNumerals.h"
+#include "collatzSequence.h"
 
 int main(int argc, const char * argv[])
 {
     using namespace std;
     cout << "Hello, World!" << endl;
     
-    romanNumerals test = romanNumerals(88);
-    romanNumerals test2 = romanNumerals("MMXCVII");
-    test.numericToRoman(3994);
-    romanNumerals::romanToNumeric("MIMXXC");
-    romanNumerals::romanToNumeric("M IM  X   XC");
+    cPair longest = getLongestCollatzSequence(1012);
+    cPair longerest = getLongestCollatzSequence(1000*1000);
+//    cPair longerest = getLongestCollatzSequence(1000*1000, true);
     
     cout
-        << "\n" << (&test == &test2)
-        << "\n" << test << "   " << test2
-        << "\n" << (test == test2);
+    << "\n" << getNextCollatzNumber(1)
+    << "\n" << getNextCollatzNumber(2)
+    << "\n" << getNextCollatzNumber(4)
+    << "\n" << getLengthCollatzSequence(4)
+    << "\n" << getLengthCollatzSequence(5)
+    << "\n" << longest.num << " " << longest.len
+    << "\n" << longerest.num << " " << longest.len
+    << "\n"
+    ;
     
-    test.setValue("xxliiv");
-    test2.setValue("xxxiii");
-    cout
-        << "\n" << test << "   " << test2
-        << "\n" << (test == test2)
-        << endl;
-    
-    cout
-        << "\n" << (&test == &test2)
-        << "\n" << (test == test2)
-        << "\n" << test << "   " << test2;
-    
-    test.setValue("xxliiv");
-    test2.setValue("xxxiii");
-    cout << "\n" << test << "   " << test2;
-    
-    test = test + test2;
-    test2 += test;
-    cout << "\n" << test << "   " << test2;
-    
+//    int len = getLengthCollatzSequence(999167, true);
+//    cout
+//    << "\n" << len;
     return 0;
 }
